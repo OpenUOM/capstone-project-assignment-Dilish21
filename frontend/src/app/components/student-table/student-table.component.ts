@@ -52,16 +52,14 @@ export class StudentTableComponent implements OnInit {
   }
 
   search(value: string) {
-    let foundItems = [];
-    if (value.length <= 0) {
+    if (!value.trim()) {  
       this.getStudentData();
-    } else {
-      let b = this.studentData.filter((student) => {
-        if (student[0].name.toLowerCase().indexOf(value) > -1) {
-          foundItems.push(student)
-        }
-      });
-      this.studentData = foundItems;
+      return;
     }
+  
+    const searchTerm = value.toLowerCase();
+    this.studentData = this.studentData.filter(student =>
+      student[0]?.name?.toLowerCase().includes(searchTerm) 
+    );
   }
 }
