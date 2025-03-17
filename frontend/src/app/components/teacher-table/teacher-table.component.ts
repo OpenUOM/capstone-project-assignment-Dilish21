@@ -61,14 +61,14 @@ export class TeacherTableComponent implements OnInit {
   }
 
   search(value: string) {
-    if (!value.trim()) {  
+    if (!value.trim()) {  // If input is empty, reset data
       this.getTeacherData();
       return;
     }
   
     const searchTerm = value.toLowerCase();
-    this.teacherData = this.teacherData.filter(teacher =>
-      teacher[0]?.name?.toLowerCase().includes(searchTerm)  
+    this.teacherData = this.teacherData.filter(teacher => 
+      teacher[0]?.name?.toLowerCase().includes(searchTerm)  // Prevents undefined errors
     );
   }
 
